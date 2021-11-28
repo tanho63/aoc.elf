@@ -1,0 +1,25 @@
+---
+title: 'Advent Of Code: {$Year}-{$Day}'
+author: "Tan Ho"
+date: "{$Date}"
+output: html_document
+---
+
+```{r setup}
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(here)
+  library(glue)
+  
+  knitr::opts_chunk$set(echo = TRUE)
+})
+
+options(scipen = 9999999)
+options(dplyr.summarise.inform = FALSE)
+```
+
+--- Data ---
+
+```{r eval = FALSE}
+input <- readLines(here::here("{$Year}/day-{$Day}-input.txt"))
+```
