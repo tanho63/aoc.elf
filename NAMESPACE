@@ -3,3 +3,4 @@
 export(aoc_cookie)
 export(aoc_cookie_set)
 export(aoc_get)
+export(aoc_init)

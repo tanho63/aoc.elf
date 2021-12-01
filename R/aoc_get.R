@@ -9,9 +9,9 @@ aoc_get <- function(day, year = format(Sys.Date(),"%Y"), path = getwd(), overwri
   cli::cli_process_start("Downloading input for {year}-{day}")
   input <- .aoc_get_input(day, year, aoc_cookie())
   .aoc_write_input(input, path, year, day, overwrite)
-  cli::cli_process_done(msg = "Downloading input for {year}-{day} ... done!")
-  .aoc_copy_rmd(path, year, day, overwrite, open)
+  cli::cli_process_done(msg = "Downloading input for {year}-{day} ... done! {Sys.time()}")
 
+  return(Sys.time())
 }
 
 .aoc_get_input <- function(day, year, cookie){
@@ -48,11 +48,19 @@ aoc_get <- function(day, year = format(Sys.Date(),"%Y"), path = getwd(), overwri
   writeLines(input, con = input_path, sep = "")
 }
 
-.aoc_copy_rmd <- function(path, year,day, overwrite, open){
+#' @export
+aoc_init <- function(day, year = format(Sys.Date(),"%Y"), path = getwd(),  overwrite = TRUE, open = TRUE){
+
+  fs::dir_create(path, year)
+
   rmd_path <- file.path(path, year, glue::glue("day-{stringr::str_pad(day,2,'left',pad = '0')}.Rmd"))
+
   file.copy(system.file("template.Rmd", package = "aoc.elf"), rmd_path, overwrite = overwrite)
-  xfun::gsub_file(rmd_path,pattern = "{$Year}", replacement = year, fixed = TRUE)
+
+  xfun::gsub_file(rmd_path, pattern = "{$Year}", replacement = year, fixed = TRUE)
   xfun::gsub_file(rmd_path, pattern = "{$Day}", replacement = stringr::str_pad(day,2,'left',pad = '0'),
+                  fixed = TRUE)
+  xfun::gsub_file(rmd_path, pattern = "{$day_int}", replacement = day,
                   fixed = TRUE)
   xfun::gsub_file(rmd_path, pattern = "{$Date}", replacement = Sys.Date(), fixed = TRUE)
 

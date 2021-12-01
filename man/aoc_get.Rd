@@ -8,7 +8,8 @@ aoc_get(
   day,
   year = format(Sys.Date(), "\%Y"),
   path = getwd(),
-  overwrite = TRUE
+  overwrite = TRUE,
+  open = TRUE
 )
 }
 \description{

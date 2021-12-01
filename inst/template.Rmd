@@ -21,5 +21,22 @@ options(dplyr.summarise.inform = FALSE)
 --- Data ---
 
 ```{r eval = FALSE}
+aoc.elf::aoc_get({$day_int})
+```
+
+```{r}
 input <- readLines(here::here("{$Year}/day-{$Day}-input.txt"))
 ```
+
+--- Part 1 ---
+
+```{r}
+
+```
+
+--- Part 2 ---
+
+```{r}
+
+```
+
