@@ -1,5 +1,14 @@
 #' Get puzzle for day
 #'
+#' Requires AOC_COOKIE environment variable to be set. Downloads and caches puzzle inputs onto your machine.
+#'
+#'
+#' @param day the day of the puzzle
+#' @param year year of puzzle, defaults to current year
+#' @param path path to copy template to, defaults to subfolders of current directory
+#' @param overwrite overwrite existing file, default to TRUE
+#' @param open open file for editing, if RStudio is available
+#'
 #' @export
 aoc_get <- function(day, year = format(Sys.Date(),"%Y"), path = getwd(), overwrite = TRUE, open = TRUE) {
 
@@ -46,27 +55,4 @@ aoc_get <- function(day, year = format(Sys.Date(),"%Y"), path = getwd(), overwri
     cli::cli_abort("Existing file found at {input_path} and overwrite set to FALSE!")
   }
   writeLines(input, con = input_path, sep = "")
-}
-
-#' @export
-aoc_init <- function(day, year = format(Sys.Date(),"%Y"), path = getwd(),  overwrite = TRUE, open = TRUE){
-
-  fs::dir_create(path, year)
-
-  rmd_path <- file.path(path, year, glue::glue("day-{stringr::str_pad(day,2,'left',pad = '0')}.Rmd"))
-
-  file.copy(system.file("template.Rmd", package = "aoc.elf"), rmd_path, overwrite = overwrite)
-
-  xfun::gsub_file(rmd_path, pattern = "{$Year}", replacement = year, fixed = TRUE)
-  xfun::gsub_file(rmd_path, pattern = "{$Day}", replacement = stringr::str_pad(day,2,'left',pad = '0'),
-                  fixed = TRUE)
-  xfun::gsub_file(rmd_path, pattern = "{$day_int}", replacement = day,
-                  fixed = TRUE)
-  xfun::gsub_file(rmd_path, pattern = "{$Date}", replacement = Sys.Date(), fixed = TRUE)
-
-  if(interactive() && open == TRUE){
-    if(rstudioapi::isAvailable()) rstudioapi::navigateToFile(rmd_path) else file.edit(rmd_path)
-  }
-
-  invisible(NULL)
 }

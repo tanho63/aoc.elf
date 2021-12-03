@@ -13,44 +13,40 @@ knitr::opts_chunk$set(
 )
 ```
 
-# aoc
+# aoc.elf
 
 <!-- badges: start -->
-[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![CRAN status](https://www.r-pkg.org/badges/version/aoc)](https://CRAN.R-project.org/package=aoc)
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg?style=flat-square)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
-The goal of aoc is to ...
+The goal of aoc.elf is to provide helper functions for [Advent of Code](https://adventofcode.com)
 
 ## Installation
 
-You can install the released version of aoc from [CRAN](https://CRAN.R-project.org) with:
+You can install aoc.elf with:
 
 ``` r
-install.packages("aoc")
+remotes::install_github("tanho63/aoc.elf")
 ```
 
-## Example
+## Usage
 
-This is a basic example which shows you how to solve a common problem:
+Key functions:
 
-```{r example}
-library(aoc)
-## basic example code
+```{r eval = FALSE}
+aoc_cookie_set(cookie = "{COOKIE}")
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
+You can find the cookie value here https://i.imgur.com/IHEBzAe.png in your network tab. Alternatively set AOC_COOKIE environment variable in .Renviron
 
-```{r cars}
-summary(cars)
+```{r eval = FALSE}
+aoc_init(day = 2)
 ```
 
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this. You could also use GitHub Actions to re-render `README.Rmd` every time you push. An example workflow can be found here: <https://github.com/r-lib/actions/tree/master/examples>.
+will create a new RMD template for day two. Can also specify year, path, overwrite, and open.
 
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
+```{r eval = FALSE}
+aoc_get(2)
 ```
 
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN.
+will download inputs for the specified day/year into the path. The template has a chunk with this pre-filled, so you can just run that chunk instead!
