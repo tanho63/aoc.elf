@@ -43,6 +43,6 @@ overwrite, and open.
 aoc_get(2)
 ```
 
-will download inputs for the specified day/year into the path. The
-template has a chunk with this pre-filled, so you can just run that
-chunk instead!
+will download and cache inputs for the specified day/year. The template
+has a chunk with this pre-filled, so you can just run that chunk inside
+the notebook! (You can also specify year, path, overwite here.)
