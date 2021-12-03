@@ -50,3 +50,8 @@ aoc_get(2)
 ```
 
 will download and cache inputs for the specified day/year. The template has a chunk with this pre-filled, so you can just run that chunk inside the notebook! (You can also specify year, path, overwite here.)
+
+## Code of Conduct
+  
+Please note that the aoc.elf project is released with a [Contributor Code of Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
+
