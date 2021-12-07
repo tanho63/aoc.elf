@@ -22,9 +22,8 @@ aoc_init <- function(day, year = format(Sys.Date(),"%Y"), path = getwd(),  overw
   xfun::gsub_file(rmd_path, pattern = "{$Year}", replacement = year, fixed = TRUE)
   xfun::gsub_file(rmd_path, pattern = "{$Day}", replacement = stringr::str_pad(day,2,'left',pad = '0'),
                   fixed = TRUE)
-  xfun::gsub_file(rmd_path, pattern = "{$day_int}", replacement = day,
+  xfun::gsub_file(rmd_path, pattern = "{$args}", replacement = glue::glue("day = {day}, year = {year}"),
                   fixed = TRUE)
-  xfun::gsub_file(rmd_path, pattern = "{$Date}", replacement = Sys.Date(), fixed = TRUE)
 
   if(interactive() && open == TRUE){
     if(rstudioapi::isAvailable()) rstudioapi::navigateToFile(rmd_path) else file.edit(rmd_path)

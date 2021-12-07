@@ -1,11 +1,10 @@
 Package: aoc.elf
 Title: Tan's Helper Functions for Advent of Code
-Version: 0.0.3
+Version: 0.0.4
 Authors@R: 
     person("Tan", "Ho", , "tan@tanho.ca", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-8388-5155"))
-Description: Helpers for downloading and submitting Advent of Code
-    answers.
+Description: Helpers for downloading Advent of Code answers. Eventually will help submit also?
 License: MIT + file LICENSE
 Depends: 
     R (>= 4.1.0)

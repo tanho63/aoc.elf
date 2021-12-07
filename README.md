@@ -28,9 +28,9 @@ Key functions:
 aoc_cookie_set(cookie = "{COOKIE}")
 ```
 
-You can find the cookie value here <https://i.imgur.com/IHEBzAe.png> in
-your network tab. Alternatively set AOC\_COOKIE environment variable in
-.Renviron
+You can find the cookie value here ![](https://i.imgur.com/IHEBzAe.png)
+in your network tab. Alternatively set AOC\_COOKIE environment variable
+in .Renviron
 
 ``` r
 aoc_init(day = 2)

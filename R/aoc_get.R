@@ -45,7 +45,7 @@ aoc_get <- function(day, year = format(Sys.Date(),"%Y"), path = getwd(), overwri
   }
 }
 
-.aoc_write_input <- function(input, path, year,day, overwrite){
+.aoc_write_input <- function(input, path, year, day, overwrite, ...){
 
   input_path <- file.path(path, year, glue::glue("day-{stringr::str_pad(day,2,'left',pad = '0')}-input.txt"))
 
