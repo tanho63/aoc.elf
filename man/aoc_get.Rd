@@ -8,8 +8,7 @@ aoc_get(
   day,
   year = format(Sys.Date(), "\%Y"),
   path = here::here(),
-  overwrite = TRUE,
-  open = TRUE
+  overwrite = TRUE
 )
 }
 \arguments{
@@ -20,8 +19,9 @@ aoc_get(
 \item{path}{path to copy template to, defaults to subfolders of current directory}
 
 \item{overwrite}{overwrite existing file, default to TRUE}
-
-\item{open}{open file for editing, if RStudio is available}
+}
+\value{
+Returns the timestamp, in case you're keen on timing your results.
 }
 \description{
 Requires AOC_COOKIE environment variable to be set. Downloads and caches puzzle inputs onto your machine.

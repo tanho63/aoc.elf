@@ -7,10 +7,11 @@
 #' @param year year of puzzle, defaults to current year
 #' @param path path to copy template to, defaults to subfolders of current directory
 #' @param overwrite overwrite existing file, default to TRUE
-#' @param open open file for editing, if RStudio is available
+#'
+#' @return Returns the timestamp, in case you're keen on timing your results.
 #'
 #' @export
-aoc_get <- function(day, year = format(Sys.Date(),"%Y"), path = here::here(), overwrite = TRUE, open = TRUE) {
+aoc_get <- function(day, year = format(Sys.Date(),"%Y"), path = here::here(), overwrite = TRUE) {
 
   .aoc_check_timestamp(day, year)
   fs::dir_create(path, year)
