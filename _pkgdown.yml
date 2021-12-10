@@ -1,0 +1,16 @@
+destination: docs
+
+url: https://tanho63.github.io/aoc.elf
+
+authors:
+  Tan Ho:
+    href: https://twitter.com/_TanHo
+
+home:
+  title: aoc.elf • Helper functions for Advent of Code
+  description: >
+    Tan's rstats helper functions for Advent of Code.
+
+template:
+  params:
+    bootswatch: cosmo
