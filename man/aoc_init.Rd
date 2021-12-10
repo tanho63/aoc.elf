@@ -7,7 +7,7 @@
 aoc_init(
   day,
   year = format(Sys.Date(), "\%Y"),
-  path = getwd(),
+  path = here::here(),
   overwrite = FALSE,
   open = TRUE
 )

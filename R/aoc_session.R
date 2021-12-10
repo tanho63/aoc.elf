@@ -1,14 +1,11 @@
-# x <- httr::GET("https://adventofcode.com/2019/day/1/input",
-#                aoc_cookie())
-
-#' Set and retrieve AOC session cookie
+#' Set AOC configuration options
 #'
-#' @rdname aoc_cookies
+#' @rdname aoc_config
 #' @param cookie a character string of the session cookie as found with network tools
 #'
-#' @return sets AOC_COOKIE environment variable and returns success message
+#' @return sets environment variable and returns success message
 #' @export
-aoc_cookie_set <- function(cookie){
+aoc_set_cookie <- function(cookie){
   stopifnot(
     is.character(cookie),
     length(cookie) == 1
@@ -17,9 +14,8 @@ aoc_cookie_set <- function(cookie){
   cli::cli_alert_success("Successfully set AOC cookie.")
 }
 
-#' @rdname aoc_cookies
+#' @noRd
 #' @return an `httr` object that contains a session cookie
-#' @export
 aoc_cookie <- function(){
   session <- Sys.getenv("AOC_COOKIE")
 
@@ -31,3 +27,40 @@ aoc_cookie <- function(){
 
   return(cookie)
 }
+
+#' Set AOC configuration options
+#'
+#' @rdname aoc_author
+#' @param author Author name, for template
+#'
+#' @return sets environment variable and returns success message
+#' @export
+aoc_set_author <- function(author){
+  stopifnot(
+    is.character(author),
+    length(author) == 1
+  )
+  Sys.setenv(AOC_AUTHOR = author)
+  cli::cli_alert_success("Successfully set AOC author.")
+}
+
+#' @noRd
+#' @return the configured author, or else tries to use options(usethis.full_name).
+aoc_author <- function(){
+
+  author <- Sys.getenv("AOC_AUTHOR")
+
+  if(author=="") author <- getOption("usethis.full_name", default = "AUTHOR")
+
+  if(author=="AUTHOR") cli::cli_alert("Author not yet configured! Configure with `aoc_author_set()` or the AOC_AUTHOR env variable.")
+
+  return(author)
+}
+
+#' @rdname aoc_config
+#' @export
+aoc_author_set <- aoc_set_author
+
+#' @rdname aoc_config
+#' @export
+aoc_cookie_set <- aoc_set_cookie

@@ -11,19 +11,36 @@
 #' @return opens the template
 #'
 #' @export
-aoc_init <- function(day, year = format(Sys.Date(),"%Y"), path = getwd(),  overwrite = FALSE, open = TRUE){
+aoc_init <- function(day, year = format(Sys.Date(),"%Y"), path = here::here(),  overwrite = FALSE, open = TRUE){
+
+  stopifnot(
+    is.numeric(day),
+    day <=31,
+    year >= 2015,
+    is.character(path),
+    length(path) == 1,
+    is.logical(overwrite),
+    length(overwrite) == 1,
+    is.logical(open),
+    length(open) == 1
+  )
 
   fs::dir_create(path, year)
 
   rmd_path <- file.path(path, year, glue::glue("day-{stringr::str_pad(day,2,'left',pad = '0')}.Rmd"))
 
+  if(fs::file_exists(rmd_path) && !overwrite) stop("File already exists and overwrite = FALSE")
   file.copy(system.file("template.Rmd", package = "aoc.elf"), rmd_path, overwrite = overwrite)
 
+  author <- aoc_author()
+
+  aoc_get_args <- glue::glue("day = {day}, year = {year}")
+  padded_day <- stringr::str_pad(day,2,'left',pad = '0')
+
   xfun::gsub_file(rmd_path, pattern = "{$Year}", replacement = year, fixed = TRUE)
-  xfun::gsub_file(rmd_path, pattern = "{$Day}", replacement = stringr::str_pad(day,2,'left',pad = '0'),
-                  fixed = TRUE)
-  xfun::gsub_file(rmd_path, pattern = "{$args}", replacement = glue::glue("day = {day}, year = {year}"),
-                  fixed = TRUE)
+  xfun::gsub_file(rmd_path, pattern = "{$Day}", replacement = padded_day, fixed = TRUE)
+  xfun::gsub_file(rmd_path, pattern = "{$Args}", replacement = aoc_get_args, fixed = TRUE)
+  xfun::gsub_file(rmd_path, pattern = "{$Author}", replacement = author, fixed = TRUE)
 
   if(interactive() && open == TRUE){
     if(rstudioapi::isAvailable()) rstudioapi::navigateToFile(rmd_path) else file.edit(rmd_path)

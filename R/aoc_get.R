@@ -10,7 +10,7 @@
 #' @param open open file for editing, if RStudio is available
 #'
 #' @export
-aoc_get <- function(day, year = format(Sys.Date(),"%Y"), path = getwd(), overwrite = TRUE, open = TRUE) {
+aoc_get <- function(day, year = format(Sys.Date(),"%Y"), path = here::here(), overwrite = TRUE, open = TRUE) {
 
   .aoc_check_timestamp(day, year)
   fs::dir_create(path, year)

@@ -1,6 +1,6 @@
 ---
 title: 'Advent Of Code: {$Year}-{$Day}'
-author: "Tan Ho"
+author: {$Author}
 date: "`r Sys.Date()`"
 output: html_document
 ---
@@ -22,7 +22,7 @@ options(dplyr.summarise.inform = FALSE)
 
 ```{r eval = FALSE}
 # tanho63/aoc.elf
-aoc.elf::aoc_get({$args})
+aoc.elf::aoc_get({$Args})
 ```
 
 ```{r}
