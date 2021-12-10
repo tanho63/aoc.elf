@@ -2,22 +2,25 @@
 % Please edit documentation in R/aoc_session.R
 \name{aoc_set_cookie}
 \alias{aoc_set_cookie}
-\alias{aoc_author_set}
-\alias{aoc_cookie_set}
+\alias{aoc_set_author}
 \title{Set AOC configuration options}
 \usage{
 aoc_set_cookie(cookie)
 
-aoc_author_set(author)
-
-aoc_cookie_set(cookie)
+aoc_set_author(author)
 }
 \arguments{
 \item{cookie}{a character string of the session cookie as found with network tools}
+
+\item{author}{Author name, for template}
 }
 \value{
 sets environment variable and returns success message
+
+sets environment variable and returns success message
 }
 \description{
+Set AOC configuration options
+
 Set AOC configuration options
 }

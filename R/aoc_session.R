@@ -30,7 +30,7 @@ aoc_cookie <- function(){
 
 #' Set AOC configuration options
 #'
-#' @rdname aoc_author
+#' @rdname aoc_config
 #' @param author Author name, for template
 #'
 #' @return sets environment variable and returns success message
@@ -57,10 +57,10 @@ aoc_author <- function(){
   return(author)
 }
 
-#' @rdname aoc_config
+#' @noRd
 #' @export
 aoc_author_set <- aoc_set_author
 
-#' @rdname aoc_config
+#' @noRd
 #' @export
 aoc_cookie_set <- aoc_set_cookie
