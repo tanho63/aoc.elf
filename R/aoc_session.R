@@ -30,6 +30,8 @@ aoc_cookie <- function(){
 
 #' Set AOC configuration options
 #'
+#' AOC author will also try to read options("usethis.full_name") for the author's name, if the environment variable is not set.
+#'
 #' @rdname aoc_config
 #' @param author Author name, for template
 #'

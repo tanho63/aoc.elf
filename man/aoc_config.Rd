@@ -20,7 +20,5 @@ sets environment variable and returns success message
 sets environment variable and returns success message
 }
 \description{
-Set AOC configuration options
-
-Set AOC configuration options
+AOC author will also try to read options("usethis.full_name") for the author's name, if the environment variable is not set.
 }

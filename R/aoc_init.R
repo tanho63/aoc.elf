@@ -13,6 +13,13 @@
 #' @export
 aoc_init <- function(day, year = format(Sys.Date(),"%Y"), path = here::here(),  overwrite = FALSE, open = TRUE){
 
+  if(day >= 2015 && year <= 31) {
+    cli::cli_alert_info("Swapping day and year, assuming you did not mean to solve day {day} of year {year}!")
+    d <- year
+    year <- day
+    day <- d
+  }
+
   stopifnot(
     is.numeric(day),
     day <=31,

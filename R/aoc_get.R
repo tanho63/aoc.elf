@@ -13,6 +13,13 @@
 #' @export
 aoc_get <- function(day, year = format(Sys.Date(),"%Y"), path = here::here(), overwrite = TRUE) {
 
+  if(day >= 2015 && year <= 31) {
+    cli::cli_alert_info("Swapping day and year, assuming you did not mean to solve day {day} of year {year}!")
+    d <- year
+    year <- day
+    day <- d
+  }
+
   .aoc_check_timestamp(day, year)
   fs::dir_create(path, year)
 
