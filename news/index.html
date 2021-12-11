@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">aoc.elf</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.6</span>
       </span>
     </div>
 
@@ -56,6 +56,8 @@
 <li>Unexported <code>aoc_cookie()</code> - for internal use only, really.</li>
 <li>Added <code><a href="../reference/aoc_config.html">aoc_set_author()</a></code> and configure parameter (v0.0.5)</li>
 <li>Uses <code>here::here()</code> instead of <code><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd()</a></code> because of behaviour inconsistencies. (v0.0.5)</li>
+<li>
+<code><a href="../reference/aoc_get.html">aoc_get()</a></code> and <code><a href="../reference/aoc_init.html">aoc_init()</a></code> will now automatically swap year and day arguments if day &gt;= 2015 and year &lt;= 31 (i.e. running <code>aoc_init(2015,3)</code> will assume you meant year 2015 and day 3). (v0.0.6)</li>
 </ul></div>
   </div>
 
