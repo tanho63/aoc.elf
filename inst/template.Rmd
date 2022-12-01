@@ -26,7 +26,8 @@ aoc.elf::aoc_get({$Args})
 ```
 
 ```{r}
-input <- readLines(here::here("{$Year}/day-{$Day}-input.txt"))
+input_raw <- readLines(here::here("{$Year}/day-{$Day}-input.txt"))
+input <- aoc.elf::aoc_read({$Args})
 ```
 
 --- Part 1 ---
