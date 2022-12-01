@@ -7,7 +7,8 @@
 #' @export
 
 aoc_read <- function(day, year = format(Sys.Date(),"%Y"), convert = TRUE){
-  input <- readLines(here::here(glue::glue("{year}/day-{day}-input.txt")))
+  padded_day <- stringr::str_pad(day,2,'left',pad = '0')
+  input <- readLines(here::here(glue::glue("{year}/day-{padded_day}-input.txt")))
 
   out <- tibble::tibble(x = input)
   if(convert) out <- readr::type_convert(out)
