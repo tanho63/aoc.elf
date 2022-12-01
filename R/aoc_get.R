@@ -64,5 +64,6 @@ aoc_get <- function(day, year = format(Sys.Date(),"%Y"), path = here::here(), ov
     cli::cli_abort("Existing file found at {input_path} and overwrite set to FALSE!")
   }
   writeLines(input, con = input_path, sep = "")
-  writeLines(Sys.time(), file.path(path, year, glue::glue("day-{stringr::str_pad(day,2,'left',pad = '0')}-timestamp.txt")))
+  writeLines(format(Sys.time(),usetz = TRUE),
+             file.path(path, year, glue::glue("day-{stringr::str_pad(day,2,'left',pad = '0')}-timestamp.txt")))
 }
