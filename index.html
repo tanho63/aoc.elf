@@ -35,7 +35,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">aoc.elf</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.8</span>
       </span>
     </div>
 
@@ -71,30 +71,29 @@
 <div class="page-header"><h1 id="aocelf">aoc.elf<a class="anchor" aria-label="anchor" href="#aocelf"></a>
 </h1></div>
 <!-- badges: start -->
-
 <p>The goal of aoc.elf is to provide helper functions for <a href="https://adventofcode.com" class="external-link">Advent of Code</a> solutions in R.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <p>You can install aoc.elf with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"tanho63/aoc.elf"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"tanho63/aoc.elf"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
 <p>Configuration options are set with environment variables AOC_COOKIE and AOC_AUTHOR. You can also use the following helper functions:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/aoc_config.html">aoc_set_cookie</a></span><span class="op">(</span>cookie <span class="op">=</span> <span class="st">"{COOKIE}"</span><span class="op">)</span>
-<span class="fu"><a href="reference/aoc_config.html">aoc_set_author</a></span><span class="op">(</span>author <span class="op">=</span> <span class="st">"{AUTHOR}"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/aoc_config.html">aoc_set_cookie</a></span><span class="op">(</span>cookie <span class="op">=</span> <span class="st">"{COOKIE}"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/aoc_config.html">aoc_set_author</a></span><span class="op">(</span>author <span class="op">=</span> <span class="st">"{AUTHOR}"</span><span class="op">)</span></span></code></pre></div>
 <p>You can find the cookie value here <img src="https://i.imgur.com/IHEBzAe.png"> in your network tab.</p>
 <p>Alternatively, you can set AOC_COOKIE and AOC_AUTHOR environment variables in your project’s .Renviron file (this should be a bit more persistent).</p>
 <p>It’s important to have an .Rproj file at the top level of your AOC folder, the functions rely on that structure to build the subfolder for each year.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/aoc_init.html">aoc_init</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span> </code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/aoc_init.html">aoc_init</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span> </span></code></pre></div>
 <p>will create a new RMD template for day 2 of the current year. Can also specify year, path, overwrite, and open.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/aoc_get.html">aoc_get</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/aoc_get.html">aoc_get</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <p>will download and cache inputs for the specified day/year. The template has a chunk with this pre-filled, so you can just run that chunk inside the notebook! (You can also specify year, path, overwite here.)</p>
 </div>
 <div class="section level2">
@@ -127,6 +126,7 @@
 <ul class="list-unstyled">
 <li><a href="CONTRIBUTING.html">Contributing guide</a></li>
 <li><a href="CODE_OF_CONDUCT.html">Code of conduct</a></li>
+<li><a href="SUPPORT.html">Getting help</a></li>
 </ul>
 </div>
 
@@ -164,7 +164,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
