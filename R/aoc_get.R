@@ -35,6 +35,7 @@ aoc_get <- function(day, year = format(Sys.Date(),"%Y"), path = here::here(), ov
 
   x <- httr::GET(
     paste0("https://adventofcode.com/", year, "/day/", day, "/input"),
+    httr::user_agent("aoc.elf R package <https://github.com/tanho63/aoc.elf>"),
     cookie)
 
   httr::stop_for_status(x)
