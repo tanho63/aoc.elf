@@ -36,7 +36,13 @@ aoc_init <- function(day, year = format(Sys.Date(),"%Y"), path = here::here(),  
 
   rmd_path <- file.path(path, year, glue::glue("day-{stringr::str_pad(day,2,'left',pad = '0')}.Rmd"))
 
-  if(fs::file_exists(rmd_path) && !overwrite) stop("File already exists and overwrite = FALSE")
+  if(fs::file_exists(rmd_path) && !overwrite) {
+    warning("File already exists and overwrite = FALSE")
+    if(interactive() && open == TRUE){
+      if(rstudioapi::isAvailable()) rstudioapi::navigateToFile(rmd_path) else file.edit(rmd_path)
+    }
+    return(invisible(NULL))
+  }
   file.copy(system.file("template.Rmd", package = "aoc.elf"), rmd_path, overwrite = overwrite)
 
   author <- aoc_author()
