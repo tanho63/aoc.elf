@@ -18,6 +18,10 @@ options(scipen = 9999999)
 options(dplyr.summarise.inform = FALSE)
 ```
 
+--- Problem Description ---
+
+`Shift+click` this: https://adventofcode.com/{$Year}/day/{$day}
+
 --- Data ---
 
 ```{r eval = FALSE}

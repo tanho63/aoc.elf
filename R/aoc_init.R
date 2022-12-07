@@ -52,6 +52,7 @@ aoc_init <- function(day, year = format(Sys.Date(),"%Y"), path = here::here(),  
 
   xfun::gsub_file(rmd_path, pattern = "{$Year}", replacement = year, fixed = TRUE)
   xfun::gsub_file(rmd_path, pattern = "{$Day}", replacement = padded_day, fixed = TRUE)
+  xfun::gsub_file(rmd_path, pattern = "{$day}", replacement = day, fixed = TRUE)
   xfun::gsub_file(rmd_path, pattern = "{$Args}", replacement = aoc_get_args, fixed = TRUE)
   xfun::gsub_file(rmd_path, pattern = "{$Author}", replacement = author, fixed = TRUE)
 
