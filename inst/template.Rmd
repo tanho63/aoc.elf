@@ -5,6 +5,8 @@ date: "`r Sys.Date()`"
 output: html_document
 ---
 
+<{$URL}>
+
 ```{r}
 suppressPackageStartupMessages({
   library(tidyverse)
@@ -17,10 +19,6 @@ suppressPackageStartupMessages({
 options(scipen = 9999999)
 options(dplyr.summarise.inform = FALSE)
 ```
-
---- Problem Description ---
-
-`Shift+click` this: https://adventofcode.com/{$Year}/day/{$day}
 
 --- Data ---
 
