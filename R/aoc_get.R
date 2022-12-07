@@ -11,7 +11,14 @@
 #' @return Returns the timestamp, in case you're keen on timing your results.
 #'
 #' @export
-aoc_get <- function(day, year = format(Sys.Date(),"%Y"), path = here::here(), overwrite = TRUE) {
+aoc_get <- function(day,
+                    year = format(Sys.Date(),"%Y"),
+                    path = here::here(),
+                    overwrite = TRUE,
+                    open = Sys.getenv("AOC_OPEN", unset = "true")
+                    ) {
+
+  open <- isTRUE(as.logical(open))
 
   if(day >= 2015 && year <= 31) {
     cli::cli_alert_info("Swapping day and year, assuming you did not mean to solve day {day} of year {year}!")
@@ -27,7 +34,8 @@ aoc_get <- function(day, year = format(Sys.Date(),"%Y"), path = here::here(), ov
   input <- .aoc_get_input(day, year, aoc_cookie())
   .aoc_write_input(input, path, year, day, overwrite)
   cli::cli_process_done(msg = "Downloading input for {year}-{day} ... done! {Sys.time()}")
-  .aoc_view_problem(year = year, day = day)
+
+  .aoc_view_problem(year = year, day = day, open = open)
 
   invisible(Sys.time())
 }
@@ -69,10 +77,10 @@ aoc_get <- function(day, year = format(Sys.Date(),"%Y"), path = here::here(), ov
              file.path(path, year, glue::glue("day-{stringr::str_pad(day,2,'left',pad = '0')}-timestamp.txt")))
 }
 
-.aoc_view_problem <- function(year, day){
-  url <- paste("https://adventofcode.com", year, "day", day, sep = "/")
+.aoc_view_problem <- function(year, day, open){
+  url <- glue::glue("https://adventofcode.com/{year}/day/{day}")
 
-  if (interactive()) {
+  if (open) {
     cli::cli_alert_info("Opening {.url {url}}")
     utils::browseURL(url)
   } else {

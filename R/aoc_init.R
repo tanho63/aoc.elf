@@ -11,7 +11,16 @@
 #' @return opens the template
 #'
 #' @export
-aoc_init <- function(day, year = format(Sys.Date(),"%Y"), path = here::here(),  overwrite = FALSE, open = TRUE){
+aoc_init <- function(day,
+                     year = format(Sys.Date(),"%Y"),
+                     path = here::here(),
+                     overwrite = FALSE,
+                     template = Sys.getenv("AOC_TEMPLATE", unset = "default"),
+                     open = Sys.getenv("AOC_OPEN", unset = "true")
+                     ){
+
+  if(template == "default") template <- system.file("template.Rmd", package = "aoc.elf")
+  open <- isTRUE(as.logical(open))
 
   if(day >= 2015 && year <= 31) {
     cli::cli_alert_info("Swapping day and year, assuming you did not mean to solve day {day} of year {year}!")
@@ -29,7 +38,10 @@ aoc_init <- function(day, year = format(Sys.Date(),"%Y"), path = here::here(),  
     is.logical(overwrite),
     length(overwrite) == 1,
     is.logical(open),
-    length(open) == 1
+    length(open) == 1,
+    is.character(template),
+    length(template) == 1,
+    fs::file_exists(template)
   )
 
   fs::dir_create(path, year)
@@ -43,6 +55,7 @@ aoc_init <- function(day, year = format(Sys.Date(),"%Y"), path = here::here(),  
     }
     return(invisible(NULL))
   }
+
   file.copy(system.file("template.Rmd", package = "aoc.elf"), rmd_path, overwrite = overwrite)
 
   author <- aoc_author()
@@ -57,7 +70,7 @@ aoc_init <- function(day, year = format(Sys.Date(),"%Y"), path = here::here(),  
   xfun::gsub_file(rmd_path, pattern = "{$Args}", replacement = aoc_get_args, fixed = TRUE)
   xfun::gsub_file(rmd_path, pattern = "{$Author}", replacement = author, fixed = TRUE)
 
-  if(interactive() && open == TRUE){
+  if(isTRUE(open)){
     if(rstudioapi::isAvailable()) rstudioapi::navigateToFile(rmd_path) else file.edit(rmd_path)
   }
 

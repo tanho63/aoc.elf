@@ -14,3 +14,6 @@ year 2015 and day 3). (v0.0.6)
 * Add `aoc_parse()` to read inputs and automatically parse into a tibble (v0.0.9)
 * `aoc_init()` now automatically opens files that already exist when `overwrite = FALSE` (v0.0.10)
 * Added hyperlink to the AOC problem description to Rmd template (v0.0.11)
+* Added `AOC_TEMPLATE` and `AOC_OPEN` environment variables to allow user to 
+provide a custom personal template and configure whether `aoc_init()` and `aoc_get()`
+automatically open new pages (v0.0.12)
