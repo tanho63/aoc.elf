@@ -1,4 +1,4 @@
-# aoc.elf 0.0.11
+# aoc.elf (development version)
 
 * Added a `NEWS.md` file to track changes to the package.
 * Added `aoc_get()` function which also caches network requests.
@@ -13,4 +13,4 @@ year 2015 and day 3). (v0.0.6)
 * Drop "setup" chunk name so that I can mass-knit these into one file. (v0.0.7)
 * Add `aoc_parse()` to read inputs and automatically parse into a tibble (v0.0.9)
 * `aoc_init()` now automatically opens files that already exist when `overwrite = FALSE` (v0.0.10)
-* Added hyperlink to the AOC problem description to Rmd template
+* Added hyperlink to the AOC problem description to Rmd template (v0.0.11)
