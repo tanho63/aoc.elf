@@ -49,10 +49,11 @@ aoc_init <- function(day, year = format(Sys.Date(),"%Y"), path = here::here(),  
 
   aoc_get_args <- glue::glue("day = {day}, year = {year}")
   padded_day <- stringr::str_pad(day,2,'left',pad = '0')
+  url <- glue::glue("https://adventofcode.com/{year}/day/{day}")
 
   xfun::gsub_file(rmd_path, pattern = "{$Year}", replacement = year, fixed = TRUE)
   xfun::gsub_file(rmd_path, pattern = "{$Day}", replacement = padded_day, fixed = TRUE)
-  xfun::gsub_file(rmd_path, pattern = "{$day}", replacement = day, fixed = TRUE)
+  xfun::gsub_file(rmd_path, pattern = "{$URL}", replacement = url, fixed = TRUE)
   xfun::gsub_file(rmd_path, pattern = "{$Args}", replacement = aoc_get_args, fixed = TRUE)
   xfun::gsub_file(rmd_path, pattern = "{$Author}", replacement = author, fixed = TRUE)
 
