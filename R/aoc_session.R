@@ -12,6 +12,7 @@ aoc_set_cookie <- function(cookie){
   )
   Sys.setenv(AOC_COOKIE = cookie)
   cli::cli_alert_success("Successfully set AOC cookie.")
+  return(invisible(TRUE))
 }
 
 #' @noRd
@@ -20,7 +21,12 @@ aoc_cookie <- function(){
   session <- Sys.getenv("AOC_COOKIE")
 
   if(session==""){
-    cli::cli_abort("No session cookie found - please set with {.code aoc_cookie_set()} (and consult the README!)")
+    cli::cli_abort(
+      c("No session cookie found!",
+        i = "Please set with {.code aoc_cookie_set()} (and consult the README!)"
+      ),
+      call = rlang::caller_env()
+    )
   }
 
   cookie <- httr::set_cookies(session = session)
@@ -30,7 +36,7 @@ aoc_cookie <- function(){
 
 #' Set AOC configuration options
 #'
-#' AOC author will also try to read options("usethis.full_name") for the author's name, if the environment variable is not set.
+#' AOC author will also try to read options("usethis.full_name") for the author's name, if this environment variable is not set.
 #'
 #' @rdname aoc_config
 #' @param author Author name, for template

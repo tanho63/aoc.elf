@@ -1,12 +1,10 @@
 #' Get puzzle for day
 #'
 #' Requires AOC_COOKIE environment variable to be set. Downloads and caches puzzle inputs onto your machine.
-#'
-#'
 #' @param day the day of the puzzle
 #' @param year year of puzzle, defaults to current year
 #' @param path path to copy template to, defaults to subfolders of current directory
-#' @param overwrite overwrite existing file, default to TRUE
+#' @param overwrite overwrite existing file, default to interactive()
 #'
 #' @return Returns the timestamp, in case you're keen on timing your results.
 #'
@@ -14,8 +12,8 @@
 aoc_get <- function(day,
                     year = format(Sys.Date(),"%Y"),
                     path = here::here(),
-                    overwrite = TRUE,
-                    open = Sys.getenv("AOC_OPEN", unset = "true")
+                    overwrite = FALSE,
+                    open = Sys.getenv("AOC_OPEN", unset = interactive())
                     ) {
 
   open <- isTRUE(as.logical(open))
@@ -27,7 +25,8 @@ aoc_get <- function(day,
     day <- d
   }
 
-  .aoc_check_timestamp(day, year)
+  .aoc_check_timestamp(day = day,year = year)
+  .aoc_check_overwrite(day = day,year = year,path = path, overwrite =  overwrite)
   fs::dir_create(path, year)
 
   cli::cli_process_start("Downloading input for {year}-{day}")
@@ -40,7 +39,28 @@ aoc_get <- function(day,
   invisible(Sys.time())
 }
 
-.aoc_get_input <- function(day, year, cookie){
+.aoc_check_overwrite <- function(day, year, path, overwrite = FALSE){
+  input_path <- file.path(path, year, glue::glue("day-{stringr::str_pad(day,2,'left',pad = '0')}-input.txt"))
+  if(file.exists(input_path) && !isTRUE(overwrite)) {
+    cli::cli_abort("Existing file found at {input_path} and overwrite set to FALSE!",call = rlang::caller_env())
+  }
+}
+
+.aoc_check_timestamp <- function(day, year){
+
+  puzzle_timestamp <- paste0(year,"-12-",day," 12:00:00 AM") |>
+    lubridate::as_datetime() |>
+    lubridate::force_tz("EST")
+
+  if(puzzle_timestamp > Sys.time()) {
+    cli::cli_abort(
+      "It's not yet midnight EST on {paste0(year,'-12-',day)} - puzzle not yet available!",
+      call = rlang::caller_env()
+    )
+  }
+}
+
+.aoc_get_input <- function(day, year, cookie = aoc_cookie()){
 
   x <- httr::GET(
     paste0("https://adventofcode.com/", year, "/day/", day, "/input"),
@@ -52,17 +72,6 @@ aoc_get <- function(day,
   return(httr::content(x, as = "text"))
 }
 
-.aoc_check_timestamp <- function(day, year){
-
-  puzzle_timestamp <- paste0(year,"-12-",day," 12:00:00 AM") |>
-    lubridate::as_datetime() |>
-    lubridate::force_tz("EST")
-
-  if(puzzle_timestamp > Sys.time()) {
-    cli::cli_abort("It's not yet midnight EST on {paste0(year,'-12-',day)} - puzzle not yet available!")
-  }
-}
-
 .aoc_write_input <- function(input, path, year, day, overwrite, ...){
 
   input_path <- file.path(path, year, glue::glue("day-{stringr::str_pad(day,2,'left',pad = '0')}-input.txt"))
@@ -70,7 +79,7 @@ aoc_get <- function(day,
   if(overwrite) unlink(input_path)
 
   if(file.exists(input_path)) {
-    cli::cli_abort("Existing file found at {input_path} and overwrite set to FALSE!")
+    cli::cli_abort("Existing file found at {input_path} and overwrite set to FALSE!", .envir = rlang::caller_env())
   }
   writeLines(input, con = input_path, sep = "")
   writeLines(format(Sys.time(),usetz = TRUE),

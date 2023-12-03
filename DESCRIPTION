@@ -1,6 +1,6 @@
 Package: aoc.elf
 Title: Tan's Helper Functions for Advent of Code
-Version: 0.13.0
+Version: 0.14.0
 Authors@R: 
     person("Tan", "Ho", , "tan@tanho.ca", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-8388-5155"))
@@ -9,13 +9,11 @@ License: MIT + file LICENSE
 Depends: 
     R (>= 4.1.0)
 Imports:
-    cachem (>= 1.0.6),
     cli (>= 3.1.0),
     fs (>= 1.5.0),
     glue (>= 1.5.0),
     httr (>= 1.4.0),
     lubridate (>= 1.7.10),
-    memoise (>= 2.0.0),
     readr,
     rstudioapi (>= 0.13),
     rvest (>= 1.0.0),
@@ -24,6 +22,6 @@ Config/testthat/edition: 3
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
 URL: https://github.com/tanho63/aoc.elf
 BugReports: https://github.com/tanho63/aoc.elf/issues

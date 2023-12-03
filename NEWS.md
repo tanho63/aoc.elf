@@ -17,3 +17,5 @@ year 2015 and day 3). (v0.0.6)
 * Added `AOC_TEMPLATE` and `AOC_OPEN` environment variables to allow user to 
 provide a custom personal template and configure whether `aoc_init()` and `aoc_get()`
 automatically open new pages (v0.0.12)
+* Fixed memoise and bumped number scheme (v0.13.0)
+* Removed memoise and in favour of refactoring to write call to disk (v0.14.0)

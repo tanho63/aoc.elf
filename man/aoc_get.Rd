@@ -8,7 +8,8 @@ aoc_get(
   day,
   year = format(Sys.Date(), "\%Y"),
   path = here::here(),
-  overwrite = TRUE
+  overwrite = FALSE,
+  open = Sys.getenv("AOC_OPEN", unset = interactive())
 )
 }
 \arguments{
@@ -18,7 +19,7 @@ aoc_get(
 
 \item{path}{path to copy template to, defaults to subfolders of current directory}
 
-\item{overwrite}{overwrite existing file, default to TRUE}
+\item{overwrite}{overwrite existing file, default to interactive()}
 }
 \value{
 Returns the timestamp, in case you're keen on timing your results.

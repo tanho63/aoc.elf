@@ -9,7 +9,8 @@ aoc_init(
   year = format(Sys.Date(), "\%Y"),
   path = here::here(),
   overwrite = FALSE,
-  open = TRUE
+  template = Sys.getenv("AOC_TEMPLATE", unset = "default"),
+  open = Sys.getenv("AOC_OPEN", unset = "true")
 )
 }
 \arguments{
