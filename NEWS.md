@@ -19,3 +19,4 @@ provide a custom personal template and configure whether `aoc_init()` and `aoc_g
 automatically open new pages (v0.0.12)
 * Fixed memoise and bumped number scheme (v0.13.0)
 * Removed memoise and in favour of refactoring to write call to disk (v0.14.0)
+* Add notebook_date plugin to template

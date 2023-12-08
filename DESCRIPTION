@@ -1,6 +1,6 @@
 Package: aoc.elf
 Title: Tan's Helper Functions for Advent of Code
-Version: 0.14.0
+Version: 0.15.0
 Authors@R: 
     person("Tan", "Ho", , "tan@tanho.ca", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-8388-5155"))

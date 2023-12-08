@@ -63,8 +63,14 @@ aoc_init <- function(day,
   aoc_get_args <- glue::glue("day = {day}, year = {year}")
   padded_day <- stringr::str_pad(day,2,'left',pad = '0')
   url <- glue::glue("https://adventofcode.com/{year}/day/{day}")
+  notebook_date <- ifelse(
+    Sys.Date() >= as.Date(paste0(year,"-12-",padded_day)),
+    Sys.Date(),
+    as.Date(paste0(year,"-12-",padded_day))
+  ) |> as.Date()
 
   xfun::gsub_file(rmd_path, pattern = "{$Year}", replacement = year, fixed = TRUE)
+  xfun::gsub_file(rmd_path, pattern = "{$Notebook_Date}", replacement = notebook_date, fixed = TRUE)
   xfun::gsub_file(rmd_path, pattern = "{$Day}", replacement = padded_day, fixed = TRUE)
   xfun::gsub_file(rmd_path, pattern = "{$URL}", replacement = url, fixed = TRUE)
   xfun::gsub_file(rmd_path, pattern = "{$Args}", replacement = aoc_get_args, fixed = TRUE)
